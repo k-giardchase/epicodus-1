@@ -13,6 +13,14 @@
 
         }
 
+        function worthBuying($max_price)
+        {
+            return $this->price < ($max_price + 100);
+
+        }
+
+
+
     }
 
     $porsche = new Car("2014 Porsche 911", 114989, 798989);
@@ -23,11 +31,11 @@
     $cars = array($porsche, $ford, $lexus, $mercedes);
 
     $cars_matching_search = array();
-        foreach($cars as $car) {
-            if ($car->worth_buying(_$GET['price'])) {
-                array_push($cars_matching_search, $car);
-            }
-        }
+    foreach ($cars as $car) {
+    if ($car->worthBuying($_GET['price'])) {
+        array_push($cars_matching_search, $car);
+    }
+}
 
 ?>
 
