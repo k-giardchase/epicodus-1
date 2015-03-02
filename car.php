@@ -7,7 +7,8 @@
         private $image_path;
 
 
-        function __construct($make_model, $price, $miles, $image_path) {
+        function __construct($make_model, $price, $miles, $image_path)
+        {
             $this->make_model = $make_model;
             $this->price = $price;
             $this->miles = $miles;
@@ -45,8 +46,8 @@
              $this->miles;
         }
 
-        function setImage() {
-
+        function setImage()
+        {
             $this->image_path;
         }
 
@@ -66,10 +67,9 @@
             return $this->miles;
         }
 
-        function getImage() {
-
+        function getImage()
+        {
             return $this->image_path;
-
         }
 
 
@@ -78,7 +78,7 @@
     $porsche = new Car("2014 Porsche 911", 114989, 798989, "<img src='porshe.jpg'>");
     $ford = new Car("2011 Ford F450", 12445, 98989, "<img src='ford.jpg'>");
     $lexus = new Car("2013 Lexus 350", 55584, 8888, "<img src='lexus.jpg'>");
-    $mercedes = new Car("Mercedes Benz CLS550", 390000, 37979, "<img src='mercedes.jpg'>");
+    $mercedes = new Car("Mercedes Benz CLS550", 390000, 37979, "<img    src='mercedes.jpg'>");
     $mercedes->setPrice(9999999);
     $mercedes->setMiles(2);
     $mercedes->setMakeModel($lexus);
@@ -86,13 +86,10 @@
     $cars = array($porsche, $ford, $lexus, $mercedes);
 
     $cars_matching_search = array();
-    foreach ($cars as $car) {
-    if ($car->worthBuying($_GET['price']) && ($car->worthMileage($_GET['miles']))) {
+        foreach ($cars as $car) {
+            if ($car->worthBuying($_GET['price']) &&    ($car->worthMileage($_GET['miles']))) {
         array_push($cars_matching_search, $car);
-    }  /*else {
-        return "There are no cars that meet your search criteria.";
-
-    } */
+    }
 
     }
 
@@ -107,20 +104,19 @@
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-
             if (empty($cars_matching_search)) {
                     echo "There are no cars that meet your search criteria.";
                 } else {
-            foreach ($cars_matching_search as $car) {
-                    echo "It's your lucky day!";
-                    echo "<li>" . $car->getMakeModel() . "</li>";
-                    echo "<ul>";
+                    foreach ($cars_matching_search as $car) {
+                        echo "It's your lucky day!";
+                        echo "<li>" . $car->getMakeModel() . "</li>";
+                        echo "<ul>";
                         echo "<li> $" . $car->getPrice() . "</li>";
                         echo "<li> Miles:" .  $car->getMiles() . "</li>";
                         echo "<li>" . $car->getImage() . "</li>";
-                    echo "</ul>";
+                        echo "</ul>";
+                    }
                 }
-            }
         ?>
     </ul>
 </body>
