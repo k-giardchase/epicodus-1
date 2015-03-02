@@ -21,6 +21,11 @@
 
         }
 
+        function worthMileage($max_mileage)
+        {
+            return $this->miles < ($max_mileage + 100);
+        }
+
         function setMakeModel()
         {
              $this->make_model;
@@ -45,7 +50,7 @@
             $this->image_path;
         }
 
-        function getMakeModel ()
+        function getMakeModel()
         {
             return $this->make_model;
         }
@@ -56,12 +61,12 @@
 
         }
 
-        function getMiles ()
+        function getMiles()
         {
             return $this->miles;
         }
 
-        function getImage () {
+        function getImage() {
 
             return $this->image_path;
 
@@ -82,12 +87,14 @@
 
     $cars_matching_search = array();
     foreach ($cars as $car) {
-    if ($car->worthBuying($_GET['price'])) {
+    if ($car->worthBuying($_GET['price']) && ($car->worthMileage($_GET['miles']))) {
         array_push($cars_matching_search, $car);
+    }  /*else {
+        return "There are no cars that meet your search criteria.";
+
+    } */
+
     }
-}
-
-
 
 ?>
 
@@ -100,13 +107,19 @@
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
+
+            if (empty($cars_matching_search)) {
+                    echo "There are no cars that meet your search criteria.";
+                } else {
             foreach ($cars_matching_search as $car) {
-                echo "<li>" . $car->getMakeModel() . "</li>";
-                echo "<ul>";
-                    echo "<li> $" . $car->getPrice() . "</li>";
-                    echo "<li> Miles:" .  $car->getMiles() . "</li>";
-                    echo "<li>" . $car->getImage() . "</li>";
-                echo "</ul>";
+                    echo "It's your lucky day!";
+                    echo "<li>" . $car->getMakeModel() . "</li>";
+                    echo "<ul>";
+                        echo "<li> $" . $car->getPrice() . "</li>";
+                        echo "<li> Miles:" .  $car->getMiles() . "</li>";
+                        echo "<li>" . $car->getImage() . "</li>";
+                    echo "</ul>";
+                }
             }
         ?>
     </ul>
