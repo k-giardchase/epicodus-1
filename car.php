@@ -6,7 +6,6 @@
         private $miles;
         private $image_path;
 
-
         function __construct($make_model, $price, $miles, $image_path)
         {
             $this->make_model = $make_model;
@@ -71,8 +70,6 @@
         {
             return $this->image_path;
         }
-
-
     }
 
     $porsche = new Car("2014 Porsche 911", 114989, 798989, "<img src='porshe.jpg'>");
